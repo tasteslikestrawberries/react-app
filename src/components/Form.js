@@ -1,109 +1,199 @@
 
-
-/*MDBootstrap FORM*/
-
-import React from "react";
-import { MDBContainer, MDBRow, MDBCol} from 'mdbreact';
-import Button from 'react-bootstrap/Button';
-
-const MyForm = () => {
-return (
-<MDBContainer>
-  <MDBRow>
-    <MDBCol md="6">
-      <form>
-        <p className="h4 text-center mb-4">Sign in</p>
-        <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
-          Your email
-        </label>
-        <input type="email" id="defaultFormLoginEmailEx" className="form-control" />
-        <br />
-        <label htmlFor="defaultFormLoginPasswordEx" className="grey-text">
-          Your password
-        </label>
-        <input type="password" id="defaultFormLoginPasswordEx" className="form-control" />
-        <div className="text-center mt-4">
-          <Button type="submit">Login</Button>
-        </div>
-      </form>
-    </MDBCol>
-  </MDBRow>
-</MDBContainer>
-);
-};
-
-export default MyForm;
-
-
-
-
-
-/* REACT-HOOK-FORM 
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import Button from 'react-bootstrap/Button'
 
-export default function App() {
-  const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
 
-  return (
-    <div className="App">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-control ">
-          <label>Email</label>
-          <input
-            type="text"
-            name="email"
-            ref={register({
-              required: 'Email is required.',
-              pattern: {
-                value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                message: 'Email is not valid.'
-              }
-            })}
-          />
-          {errors.email && <p className="errorMsg">{errors.email.message}</p>}
-        </div>
-        <div className="form-control">
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            ref={register({
-              required: 'Password is required.',
-              minLength: {
-                value: 6,
-                message: 'Password should be at-least 6 characters.'
-              }
-            })}
-          />
-          {errors.password && (
-            <p className="errorMsg">{errors.password.message}</p>
-          )}
-        </div>
-        <div className="form-control">
-          <label></label>
-          <Button type="submit">Login</Button>
-        </div>
+class MasterForm extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      currentStep: 1,
+      email:  '',
+      username: '',
+      password: '', 
+    }
+  }
+
+  handleChange = event => {
+    const {name, value} = event.target
+    this.setState({
+      [name]: value
+    })    
+  }
+   
+  handleSubmit = event => {
+    event.preventDefault()
+    const { email, username, password } = this.state
+    alert(`Your registration detail: \n 
+           Email: ${email} \n 
+           Username: ${username} \n
+           Password: ${password}`)
+  }
+  
+  _next = () => {
+    let currentStep = this.state.currentStep
+    currentStep = currentStep >= 2? 3: currentStep + 1
+    this.setState({
+      currentStep: currentStep
+    })
+  }
+    
+  _prev = () => {
+    let currentStep = this.state.currentStep
+    currentStep = currentStep <= 1? 1: currentStep - 1
+    this.setState({
+      currentStep: currentStep
+    })
+  }
+
+/*
+* the functions for our button
+*/
+previousButton() {
+  let currentStep = this.state.currentStep;
+  if(currentStep !==1){
+    return (
+      <button 
+        className="btn btn-secondary" 
+        type="button" onClick={this._prev}>
+      Previous
+      </button>
+    )
+  }
+  return null;
+}
+
+nextButton(){
+  let currentStep = this.state.currentStep;
+  if(currentStep <3){
+    return (
+      <button 
+        className="btn btn-primary float-right" 
+        type="button" onClick={this._next}>
+      Next
+      </button>        
+    )
+  }
+  return null;
+}
+  
+  render() {    
+    return (
+      <React.Fragment>
+     
+      <h1>React Wizard Form 🧙‍♂️</h1>
+      <p>Step {this.state.currentStep} </p> 
+
+      <form onSubmit={this.handleSubmit}>
+      {/* 
+        render the form steps and pass required props in
+      */}
+        <Step1 
+          currentStep={this.state.currentStep} 
+          handleChange={this.handleChange}
+          email={this.state.email}
+        />
+        <Step2 
+          currentStep={this.state.currentStep} 
+          handleChange={this.handleChange}
+          username={this.state.username}
+        />
+        <Step3 
+          currentStep={this.state.currentStep} 
+          handleChange={this.handleChange}
+          password={this.state.password}
+        />
+        {this.previousButton()}
+        {this.nextButton()}
+
       </form>
+  
+      </React.Fragment>
+    );
+  }
+}
+
+function Step1(props) {
+  if (props.currentStep !== 1) {
+    return null
+  } 
+  return(
+    <div className="form-group">
+      <label htmlFor="email">Email address</label>
+      <input
+        className="form-control"
+        id="email"
+        name="email"
+        type="text"
+        placeholder="Enter email"
+        value={props.email}
+        onChange={props.handleChange}
+        />
     </div>
   );
 }
 
-*/
+function Step2(props) {
+  if (props.currentStep !== 2) {
+    return null
+  } 
+  return(
+    <div className="form-group">
+      <label htmlFor="username">Username</label>
+      <input
+        className="form-control"
+        id="username"
+        name="username"
+        type="text"
+        placeholder="Enter username"
+        value={props.username}
+        onChange={props.handleChange}
+        />
+    </div>
+  );
+}
+
+function Step3(props) {
+  if (props.currentStep !== 3) {
+    return null
+  } 
+  return(
+    <React.Fragment>
+    <div className="form-group">
+      <label htmlFor="password">Password</label>
+      <input
+        className="form-control"
+        id="password"
+        name="password"
+        type="password"
+        placeholder="Enter password"
+        value={props.password}
+        onChange={props.handleChange}
+        />      
+    </div>
+    <button className="btn btn-success btn-block">Sign up</button>
+    </React.Fragment>
+  );
+}
 
 
 
-/*MY SIMPLE REACT FORM*/
+
+
+export default MasterForm
+
+
+
+
+
+
+
+
+
+
 
 
 /*
-import React, { useState } from "react"
-
 function MyForm() {
   const [state, setState] = useState({
     fname: "",
@@ -226,7 +316,6 @@ function MyForm() {
   )
 }
 export default MyForm
-
 */
 
 

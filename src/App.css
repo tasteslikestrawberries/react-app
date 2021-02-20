@@ -4,6 +4,7 @@ body {
   font-size: 18px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   text-decoration: none;
+  box-sizing: border-box;
 }
 
 #navbar {
@@ -30,18 +31,6 @@ h2{
 
 /*CONTENT*/
 
-.content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: 'a b';
-                      
-  grid-gap: 40px;
-  padding: 40px;
-  
-}
-
-
 header {
   font-size: 60px;
   letter-spacing: 2px;
@@ -56,37 +45,9 @@ header {
   top:80px;
 }
 
+/*FORM*/Ž
 
 form {
-
-  text-align: justify;
-  background-color: #f8f9fa;
-  color: rgb(0, 0, 0);
-  padding: 0px 30px 30px 30px;
-  
-
+  width: 500px;
+  height: 500px;
 }
-
-form>h3{ color: rgb(0, 0, 0);
-  
-  padding: 30px;
-  font-size: 40px;}
-
-.articles {
-  display: inline-grid;
-  color: rgb(0, 0, 0);
-  background-color: #f8f9fa;
-  padding: 0px 30px 30px 30px;
-  text-align: justify;
- 
-
-}
-
-
-.articles>h3{
-  color: rgb(0, 0, 0);
- 
- padding: 30px;
- font-size: 40px;
-}
-
