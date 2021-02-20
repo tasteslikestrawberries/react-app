@@ -6,7 +6,7 @@ const Articles = () => {
   
     
       <div className="articles">
-      <h3>Articles</h3>
+      <h1>Articles</h1>
 
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
            aliqua. Ut enim ad minim veniam, quis nostrud exercitation

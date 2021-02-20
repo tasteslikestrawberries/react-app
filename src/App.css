@@ -2,13 +2,14 @@ body {
   background-color: white; /* #282c34;*/
   color: black;
   font-size: 18px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Mulish', sans-serif;
   text-decoration: none;
   box-sizing: border-box;
 }
 
 #navbar {
   font-size: 16px;
+  font-weight:bold;
 }
  
 
@@ -17,7 +18,7 @@ h1{
   color: rgb(0, 0, 0);
  text-align: center;
  padding: 30px;
- font-size: 60px
+ font-size: 50px
 }
 
 h2{
@@ -35,19 +36,34 @@ header {
   font-size: 60px;
   letter-spacing: 2px;
   color: white;
-
 }
 
 #citem {
   height: 700px;
 }
+
 #caption {
   top:80px;
 }
 
-/*FORM*/Ž
+
+/*FORM*/
 
 form {
-  width: 500px;
-  height: 500px;
+  width:500px;
+  margin:auto;
+}
+
+.btn {
+  margin-bottom: 20px;
+}
+
+.step {
+ margin-left: 350px;
+}
+
+.articles {
+  padding: 50px;
+  text-align: justify;
+  background-color:lavender;
 }

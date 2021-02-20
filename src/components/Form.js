@@ -68,7 +68,7 @@ nextButton(){
   if(currentStep <3){
     return (
       <button 
-        className="btn btn-primary float-right" 
+        className="btn btn-primary float-right"  
         type="button" onClick={this._next}>
       Next
       </button>        
@@ -82,7 +82,7 @@ nextButton(){
       <React.Fragment>
      
       <h1>React Wizard Form 🧙‍♂️</h1>
-      <p>Step {this.state.currentStep} </p> 
+      <p className= 'step'>Step {this.state.currentStep} </p> 
 
       <form onSubmit={this.handleSubmit}>
       {/* 
@@ -175,9 +175,6 @@ function Step3(props) {
     </React.Fragment>
   );
 }
-
-
-
 
 
 export default MasterForm
