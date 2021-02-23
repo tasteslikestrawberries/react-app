@@ -11,7 +11,7 @@ import {
 import NavigationBar from './components/NavigationBar.js';
 import Home from './components/Home';
 import MasterForm from './components/Form';
-import Articles from './components/Articles';
+import Tablica from './components/Table';
 
 //stylesheet
 import "./App.css"
@@ -31,8 +31,8 @@ function App () {
             	<MasterForm/>
             </Route >
 
-			<Route path="/articles"> 
-            	<Articles/>
+			<Route path="/table"> 
+            	<Tablica/>
             </Route >
 
 		

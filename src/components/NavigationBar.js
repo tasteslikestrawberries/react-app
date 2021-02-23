@@ -29,7 +29,7 @@ class NavigationBar extends React.Component{
       <Nav className="mr-auto">
 
              <Nav.Link as={Link} to="/form">Form</Nav.Link>
-             <Nav.Link as={Link} to="/articles">Articles</Nav.Link>
+             <Nav.Link as={Link} to="/table">Table</Nav.Link>
   
       </Nav>
 
